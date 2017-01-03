@@ -129,7 +129,8 @@ namespace NLog.Internal.FileAppenders
 
             // Mutex names must not contain a backslash, it's the namespace separator,
             // but all other are OK
-            canonicalName = canonicalName.Replace('\\', '/');
+            canonicalName = canonicalName.Replace('\\', '_');
+            canonicalName = canonicalName.Replace('/', '_');
             string mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, canonicalName);
 
             // A mutex name must not exceed MAX_PATH (260) characters
